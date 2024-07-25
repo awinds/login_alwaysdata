@@ -6,16 +6,17 @@ const { Client } = require('ssh2');
   try {
     // 读取 accounts.json 中的 JSON 字符串
     const accountsJson = fs.readFileSync('accounts.json', 'utf-8');
+    console.log(accountsJson);
     const accounts = JSON.parse(accountsJson);
 
     for (const account of accounts) {
       const { username, password } = account;
-
+      let host = 'ssh-' + username + '.alwaysdata.net';
       // 建立SSH连接
       const ssh = new Client();
       await new Promise((resolve, reject) => {
         ssh.on('ready', resolve).on('error', reject).connect({
-          host: 'ssh-dsk.alwaysdata.net',
+          host: host,
           port: 22,
           username,
           password,
