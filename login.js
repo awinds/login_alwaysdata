@@ -4,9 +4,11 @@ const { Client } = require('ssh2');
 
 (async () => {
   try {
-    const accountsJson = JSON.parse(process.env.ACCOUNTS_JSON);
+    // 读取 accounts.json 中的 JSON 字符串
+    const accountsJson = fs.readFileSync('accounts.json', 'utf-8');
+    const accounts = JSON.parse(accountsJson);
 
-    for (const account of accountsJson) {
+    for (const account of accounts) {
       const { username, password } = account;
 
       // 建立SSH连接
