@@ -30,17 +30,14 @@ async function delayTime(ms) {
 			  password,
 			});
 		  });
-
-		  // 执行SSH相关的命令或其他任务
-		  console.log(`账号 ${username} 使用SSH登录成功！`);
-
+		 
 		  // 关闭SSH连接
 		  ssh.end();
 		  
 		  // 获取当前的UTC时间和北京时间
 		  const nowUtc = formatToISO(new Date());// UTC时间
 		  const nowBeijing = formatToISO(new Date(new Date().getTime() + 8 * 60 * 60 * 1000)); // 北京时间东8区，用算术来搞
-		  console.log(`账号 ${username} 于北京时间 ${nowBeijing}（UTC时间 ${nowUtc}）登录成功！`);
+		  console.log(`账号 ${username} 于北京时间 ${nowBeijing}（UTC时间 ${nowUtc}）使用SSH登录成功！`);
 			
 	  } catch (error) {
 		console.error(`账号 ${username} 登录时出现错误: ${error}`);
